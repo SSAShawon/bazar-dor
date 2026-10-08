@@ -22,13 +22,7 @@ const Navbar = () => {
               <h1 className="text-2xl font-bold leading-tight text-black">
                 বাজার দর
               </h1>
-              <p className="text-sm text-black">
-                {new Intl.DateTimeFormat("bn-BD", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                }).format(new Date())}
-              </p>
+              <p className="text-sm text-black">৮ অক্টোবর, ২০২৬</p>
             </div>
           </div>
 
