@@ -1,16 +1,19 @@
 const NavItem = async () => {
   const response = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/categories",
+    "https://api.abcz.workers.dev/api/bazardor/categories",
+    {
+      cache: "force-cache",
+    }
   );
 
   if (!response.ok) {
-    throw new Error("Failed to fetch categories");
+    throw new Error(`Failed to fetch categories: ${response.status}`);
   }
 
   const categories = await response.json();
 
   return (
-    <div className="border-t bg-white">
+    <div className="bg-white">
       <div className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-8">
         <div className="flex items-center justify-start gap-8 py-3">
           {categories.map(
@@ -28,7 +31,7 @@ const NavItem = async () => {
                 <span>{category.icon}</span>
                 <span>{category.nameBn}</span>
               </a>
-            ),
+            )
           )}
         </div>
       </div>

@@ -1,7 +1,6 @@
-"use client";
+
 import Image from "next/image";
 import NavItem from "./NavItem";
-
 const Navbar = () => {
   return (
     <nav className="border-b bg-white">
@@ -41,6 +40,7 @@ const Navbar = () => {
       </div>
 
       <NavItem/>
+    
     </nav>
   );
 };
