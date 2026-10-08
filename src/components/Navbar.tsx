@@ -1,12 +1,11 @@
-
 import Image from "next/image";
 import NavItem from "./NavItem";
+
 const Navbar = () => {
   return (
-    <nav className="border-b bg-white">
+    <nav className="sticky top-0 z-50  bg-white">
       <div className="mx-auto max-w-7xl px-7 py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
           <div className="flex items-center gap-3">
             <div className="rounded-lg bg-green-600 p-2">
               <Image
@@ -26,21 +25,19 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Auth Buttons */}
           <div className="flex items-center gap-3">
-            <button className="btn btn-outline text-black hover:bg-green-600 hover:text-white hover:border-green-600">
+            <button className="btn btn-outline border-black text-black hover:border-green-600 hover:bg-green-600 hover:text-white">
               সাইন ইন
             </button>
 
-            <button className="btn bg-green-600 text-white border-green-600 hover:bg-white hover:text-green-600 hover:border-green-600">
+            <button className="btn border-green-600 bg-green-600 text-white hover:border-green-600 hover:bg-white hover:text-green-600">
               সাইন আপ
             </button>
           </div>
         </div>
       </div>
 
-      <NavItem/>
-    
+      <NavItem />
     </nav>
   );
 };

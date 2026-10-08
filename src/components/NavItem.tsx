@@ -13,7 +13,7 @@ const NavItem = async () => {
   const categories = await response.json();
 
   return (
-    <div className="bg-white">
+    <div className="bg-white ">
       <div className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-8">
         <div className="flex items-center justify-start gap-8 py-3">
           {categories.map(

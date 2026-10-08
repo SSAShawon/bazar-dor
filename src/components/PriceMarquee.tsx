@@ -27,12 +27,12 @@ const PriceMarquee = async () => {
   const data: Product[] = await res.json();
 
   return (
-    <div className="bg-white py-2 text-black">
+    <div className="border-y border-gray-200 bg-white py-2 text-black">
       <Marquee speed={100} pauseOnHover>
         {data.map((product) => (
           <div
             key={product.id}
-            className="mx-8 flex items-center gap-2 whitespace-nowrap"
+            className="mx-8 flex items-center gap-3 whitespace-nowrap border-r border-gray-200 pr-8"
           >
             <span className="text-lg">{product.categoryIcon}</span>
 
@@ -46,7 +46,7 @@ const PriceMarquee = async () => {
               className={
                 product.change.dir === "up"
                   ? "font-semibold text-red-500"
-                  : "font-semibold text-green-300"
+                  : "font-semibold text-green-500"
               }
             >
               {product.change.dir === "up" ? "▲" : "▼"}{" "}

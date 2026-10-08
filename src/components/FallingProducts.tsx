@@ -12,7 +12,7 @@ type Product = {
   };
 };
 
-const RisingProducts = async () => {
+const FallingProducts = async () => {
   const response = await fetch(
     "https://api.abcz.workers.dev/api/bazardor/products",
     {
@@ -26,19 +26,19 @@ const RisingProducts = async () => {
 
   const products: Product[] = await response.json();
 
-  const risingProducts = products
-    .filter((product) => product.change.dir === "up")
+  const fallingProducts = products
+    .filter((product) => product.change.dir === "down")
     .slice(0, 6);
 
   return (
     <section className="bg-white py-12">
       <div className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-8">
         <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-         <span className="text-red-500">▲</span> আজ দাম বেড়েছে
+         <span className="text-green-500">▼</span> আজ দাম কমেছে
         </h2>
 
         <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {risingProducts.map((product) => (
+          {fallingProducts.map((product) => (
             <div
               key={product.id}
               className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm"
@@ -78,9 +78,10 @@ const RisingProducts = async () => {
                 </div>
 
                 <div className="text-right">
-                  <p className="text-sm text-gray-500">দাম বেড়েছে</p>
-                  <p className="mt-1 font-semibold text-red-500">
-                    ▲ {product.change.pct}%
+                  <p className="text-sm text-gray-500">দাম কমেছে</p>
+                  <p className="mt-1 font-semibold">
+                    <span className="text-green-500">▼</span>{" "}
+                    {Math.abs(product.change.pct)}%
                   </p>
                 </div>
               </div>
@@ -92,4 +93,4 @@ const RisingProducts = async () => {
   );
 };
 
-export default RisingProducts;
+export default FallingProducts;
