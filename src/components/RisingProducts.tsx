@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type Product = {
   id: number;
@@ -6,6 +7,7 @@ type Product = {
   unit: string;
   today: number;
   image: string;
+  slug: string;
   change: {
     dir: "up" | "down";
     pct: number;
@@ -39,10 +41,11 @@ const RisingProducts = async () => {
 
         <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {risingProducts.map((product) => (
-            <div
-              key={product.id}
-              className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm"
-            >
+            <Link
+  key={product.id}
+  href={`/product/${product.slug}`}
+  className="block rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+>
               <div className="flex items-center gap-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-gray-50">
                   {product.image.startsWith("/") ? (
@@ -84,7 +87,7 @@ const RisingProducts = async () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
