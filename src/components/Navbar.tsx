@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import NavItem from "./NavItem";
 
 const Navbar = () => {
   return (
@@ -38,6 +39,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+      <NavItem/>
     </nav>
   );
 };
