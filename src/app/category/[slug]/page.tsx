@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
+export const instant = false;
+
 type Product = {
   id: number;
   slug: string;
