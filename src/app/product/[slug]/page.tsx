@@ -1,3 +1,7 @@
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import { auth } from "@/lib/auth";
+
 import Link from "next/link";
 import { notFound } from "next/navigation";
 export const instant = false;
@@ -29,6 +33,13 @@ type Product = {
 
 const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session) {
+    redirect(`/signin?callbackURL=${encodeURIComponent(`/product/${slug}`)}`);
+  }
 
   const response = await fetch(
     "https://api.api-store.workers.dev/api/bazardor/products",
