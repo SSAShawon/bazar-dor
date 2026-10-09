@@ -1,4 +1,3 @@
-
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import { MongoClient } from "mongodb";
@@ -6,7 +5,9 @@ import { MongoClient } from "mongodb";
 const mongoUri = process.env.MONGODB_URI;
 
 if (!mongoUri) {
-  throw new Error("MONGODB_URI is missing in .env.local");
+  throw new Error(
+    "MONGODB_URI is not configured in the deployment environment.",
+  );
 }
 
 const client = new MongoClient(mongoUri);
