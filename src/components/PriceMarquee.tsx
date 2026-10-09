@@ -1,3 +1,4 @@
+"use cache";
 import Marquee from "react-fast-marquee";
 
 type Product = {
