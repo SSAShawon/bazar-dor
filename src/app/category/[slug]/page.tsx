@@ -31,10 +31,10 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
 
   const [categoryResponse, productResponse] = await Promise.all([
-    fetch("https://api.abcz.workers.dev/api/bazardor/categories", {
+    fetch("https://api.api-store.workers.dev/api/bazardor/categories", {
       cache: "force-cache",
     }),
-    fetch("https://api.abcz.workers.dev/api/bazardor/products", {
+    fetch("https://api.api-store.workers.dev/api/bazardor/products", {
       cache: "force-cache",
     }),
   ]);
