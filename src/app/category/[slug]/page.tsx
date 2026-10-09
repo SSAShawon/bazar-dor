@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import CategoryProductList from "@/components/CategoryProductList";
 
 export const instant = false;
 
@@ -76,77 +77,9 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
         </section>
 
         {/* Sort Section */}
-        <section className="mt-5 rounded-2xl bg-white p-4 shadow-sm">
-          <div className="flex justify-end">
-            <select
-              className="select select-bordered w-full max-w-xs text-gray-700"
-              defaultValue=""
-            >
-              <option value="" disabled>
-                সাজান
-              </option>
-              <option value="low-to-high">দাম: কম থেকে বেশি</option>
-              <option value="high-to-low">দাম: বেশি থেকে কম</option>
-              <option value="change">দামের পরিবর্তন</option>
-            </select>
-          </div>
-        </section>
+        <CategoryProductList products={categoryProducts} />
 
-        {/* Products */}
-        <section className="mt-5">
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {categoryProducts.map((product) => (
-              <Link
-  key={product.id}
-  href={`/product/${product.slug}`}
-  className="block rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
->
-                <div className="flex items-center gap-4">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-gray-50">
-                    <span className="text-4xl">{product.image}</span>
-                  </div>
-
-                  <div>
-                    <h2 className="font-semibold text-gray-900">
-                      {product.nameBn}
-                    </h2>
-
-                    <p className="mt-1 text-sm text-gray-500">
-                      প্রতি {product.unit}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-5 flex items-end justify-between border-t border-gray-100 pt-4">
-                  <div>
-                    <p className="text-sm text-gray-500">আজকের দাম</p>
-
-                    <p className="mt-1 text-xl font-bold text-gray-900">
-                      ৳{product.today}
-                    </p>
-                  </div>
-
-                  <div className="text-right">
-                    <p className="text-sm text-gray-500">দামের পরিবর্তন</p>
-
-                    <p className="mt-1 font-semibold">
-                      <span
-                        className={
-                          product.change.dir === "up"
-                            ? "text-red-500"
-                            : "text-green-500"
-                        }
-                      >
-                        {product.change.dir === "up" ? "▲" : "▼"}
-                      </span>{" "}
-                      {Math.abs(product.change.pct)}%
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+       
       </div>
     </main>
   );

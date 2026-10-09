@@ -9,7 +9,7 @@ const Navbar = () => {
           <div className="flex items-center gap-3">
             <div className="rounded-lg bg-green-600 p-2">
               <Image
-                src="/logo-icon.png"
+                src="/image/logo-icon.png"
                 alt="বাজার দর"
                 width={48}
                 height={48}
