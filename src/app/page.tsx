@@ -24,18 +24,12 @@ function ProductSectionFallback() {
   );
 }
 
-function MarqueeFallback() {
-  return (
-    <div className="h-12 animate-pulse border-y border-gray-200 bg-gray-100" />
-  );
-}
+
 
 export default function Home() {
   return (
     <main>
-      <Suspense fallback={<MarqueeFallback />}>
-        <PriceMarquee />
-      </Suspense>
+      
 
       <Hero />
 
