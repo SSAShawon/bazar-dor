@@ -3,7 +3,6 @@ import { Suspense } from "react";
 import AllProducts from "@/components/AllProducts";
 import FallingProducts from "@/components/FallingProducts";
 import Hero from "@/components/Hero";
-import PriceMarquee from "@/components/PriceMarquee";
 import RisingProducts from "@/components/RisingProducts";
 
 function ProductSectionFallback() {
