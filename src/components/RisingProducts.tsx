@@ -19,7 +19,7 @@ const RisingProducts = async () => {
     "https://openapi.programming-hero.com/api/bazardor/products",
     {
       cache: "force-cache",
-    }
+    },
   );
 
   if (!response.ok) {
@@ -30,22 +30,23 @@ const RisingProducts = async () => {
 
   const risingProducts = products
     .filter((product) => product.change.dir === "up")
+    .sort((a, b) => b.change.pct - a.change.pct)
     .slice(0, 6);
 
   return (
     <section className="bg-white py-12">
       <div className="mx-auto max-w-7xl px-5 sm:px-7 lg:px-8">
         <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-         <span className="text-red-500">▲</span> আজ দাম বেড়েছে
+          <span className="text-red-500">▲</span> আজ দাম বেড়েছে
         </h2>
 
         <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {risingProducts.map((product) => (
             <Link
-  key={product.id}
-  href={`/product/${product.slug}`}
-  className="block rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
->
+              key={product.id}
+              href={`/product/${product.slug}`}
+              className="block rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            >
               <div className="flex items-center gap-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-gray-50">
                   {product.image.startsWith("/") ? (
@@ -90,6 +91,12 @@ const RisingProducts = async () => {
             </Link>
           ))}
         </div>
+
+        {risingProducts.length === 0 && (
+          <p className="mt-6 text-gray-500">
+            বর্তমানে দাম বেড়েছে এমন কোনো পণ্য পাওয়া যায়নি।
+          </p>
+        )}
       </div>
     </section>
   );

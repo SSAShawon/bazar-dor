@@ -19,7 +19,7 @@ const AllProducts = async () => {
     "https://openapi.programming-hero.com/api/bazardor/products",
     {
       cache: "force-cache",
-    }
+    },
   );
 
   if (!response.ok) {
@@ -44,10 +44,10 @@ const AllProducts = async () => {
         <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => (
             <Link
-  key={product.id}
-  href={`/product/${product.slug}`}
-  className="block rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
->
+              key={product.id}
+              href={`/product/${product.slug}`}
+              className="block rounded-xl border border-gray-100 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            >
               <div className="flex items-center gap-4">
                 <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-gray-50">
                   {product.image.startsWith("/") ? (
@@ -86,16 +86,22 @@ const AllProducts = async () => {
                   <p className="text-sm text-gray-500">দামের পরিবর্তন</p>
 
                   <p className="mt-1 font-semibold">
-                    <span
-                      className={
-                        product.change.dir === "up"
-                          ? "text-red-500"
-                          : "text-green-500"
-                      }
-                    >
-                      {product.change.dir === "up" ? "▲" : "▼"}
-                    </span>{" "}
-                    {Math.abs(product.change.pct)}%
+                    {product.change.pct === 0 ? (
+                      <span className="text-gray-400">—</span>
+                    ) : (
+                      <>
+                        <span
+                          className={
+                            product.change.dir === "up"
+                              ? "text-red-500"
+                              : "text-green-500"
+                          }
+                        >
+                          {product.change.dir === "up" ? "▲" : "▼"}
+                        </span>{" "}
+                        {Math.abs(product.change.pct)}%
+                      </>
+                    )}
                   </p>
                 </div>
               </div>

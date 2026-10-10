@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -20,12 +19,18 @@ export default function Navbar() {
   const router = useRouter();
   const user = session?.user;
 
+  const [date, setDate] = useState("");
+
+  useEffect(() => {
+    const today = new Date().toLocaleDateString("bn-BD", {
+      dateStyle: "full",
+    });
+    setDate(today);
+  }, []);
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node)
-      ) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setMenuOpen(false);
       }
     }
@@ -55,10 +60,7 @@ export default function Navbar() {
     }
   };
 
-  const avatar =
-    !imageError && user?.image
-      ? user.image
-      : DEFAULT_AVATAR;
+  const avatar = !imageError && user?.image ? user.image : DEFAULT_AVATAR;
 
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 shadow-sm backdrop-blur-md">
@@ -82,7 +84,7 @@ export default function Navbar() {
                 বাজার দর
               </h1>
               <p className="mt-0.5 text-xs font-medium text-gray-500 sm:text-sm">
-                প্রতিদিনের বাজার, হাতের মুঠোয়
+                {date}
               </p>
             </div>
           </Link>
@@ -117,9 +119,7 @@ export default function Navbar() {
                     <p className="truncate text-sm font-bold text-gray-800">
                       {user.name || "ব্যবহারকারী"}
                     </p>
-                    <p className="text-xs text-green-600">
-                      আমার অ্যাকাউন্ট
-                    </p>
+                    <p className="text-xs text-green-600">আমার অ্যাকাউন্ট</p>
                   </div>
 
                   {/* Dropdown arrow */}

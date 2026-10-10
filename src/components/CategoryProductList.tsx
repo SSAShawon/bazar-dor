@@ -24,19 +24,9 @@ export default function CategoryProductList({ products }: Props) {
   const [sortBy, setSortBy] = useState("default");
 
   const sortedProducts = [...products].sort((a, b) => {
-    switch (sortBy) {
-      case "low-to-high":
-        return a.today - b.today;
-
-      case "high-to-low":
-        return b.today - a.today;
-
-      case "change":
-        return Math.abs(b.change.pct) - Math.abs(a.change.pct);
-
-      default:
-        return 0;
-    }
+    if (sortBy === "low-to-high") return a.today - b.today;
+    if (sortBy === "high-to-low") return b.today - a.today;
+    return 0;
   });
 
   return (
@@ -51,7 +41,6 @@ export default function CategoryProductList({ products }: Props) {
           <option value="default">ডিফল্ট সাজানো</option>
           <option value="low-to-high">দাম: কম থেকে বেশি</option>
           <option value="high-to-low">দাম: বেশি থেকে কম</option>
-          <option value="change">দামের পরিবর্তন: বেশি থেকে কম</option>
         </select>
       </div>
 
@@ -77,7 +66,6 @@ export default function CategoryProductList({ products }: Props) {
                     <h2 className="font-semibold text-gray-900">
                       {product.nameBn}
                     </h2>
-
                     <p className="mt-1 text-sm text-gray-500">
                       প্রতি {product.unit}
                     </p>
@@ -87,7 +75,6 @@ export default function CategoryProductList({ products }: Props) {
                 <div className="mt-5 flex items-end justify-between border-t border-gray-100 pt-4">
                   <div>
                     <p className="text-sm text-gray-500">আজকের দাম</p>
-
                     <p className="mt-1 text-xl font-bold text-gray-900">
                       ৳{product.today}
                     </p>
@@ -97,18 +84,23 @@ export default function CategoryProductList({ products }: Props) {
                     <p className="text-sm text-gray-500">
                       দামের পরিবর্তন
                     </p>
-
                     <p className="mt-1 font-semibold">
-                      <span
-                        className={
-                          product.change.dir === "up"
-                            ? "text-red-500"
-                            : "text-green-500"
-                        }
-                      >
-                        {product.change.dir === "up" ? "▲" : "▼"}
-                      </span>{" "}
-                      {Math.abs(product.change.pct)}%
+                      {product.change.pct === 0 ? (
+                        <span className="text-gray-400">—</span>
+                      ) : (
+                        <>
+                          <span
+                            className={
+                              product.change.dir === "up"
+                                ? "text-red-500"
+                                : "text-green-500"
+                            }
+                          >
+                            {product.change.dir === "up" ? "▲" : "▼"}
+                          </span>{" "}
+                          {Math.abs(product.change.pct)}%
+                        </>
+                      )}
                     </p>
                   </div>
                 </div>
