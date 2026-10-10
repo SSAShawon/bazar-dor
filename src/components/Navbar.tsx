@@ -19,14 +19,12 @@ export default function Navbar() {
   const router = useRouter();
   const user = session?.user;
 
-  const [date, setDate] = useState("");
-
-  useEffect(() => {
-    const today = new Date().toLocaleDateString("bn-BD", {
-      dateStyle: "full",
-    });
-    setDate(today);
-  }, []);
+ 
+   const date = new Date().toLocaleDateString("bn-BD", {
+     dateStyle: "full",
+   });
+  
+  
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
