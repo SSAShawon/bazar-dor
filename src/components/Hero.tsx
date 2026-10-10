@@ -4,9 +4,15 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const Hero = () => {
-  const date = new Date().toLocaleDateString("bn-BD", {
-    dateStyle: "full",
-  });
+  const [date, setDate] = useState("");
+
+  useEffect(() => {
+    const today = new Date().toLocaleDateString("bn-BD", {
+      dateStyle: "full",
+    });
+
+    setDate(today);
+  }, []);
   return (
     <section className="bg-white">
       <div className="mx-auto my-8 grid max-w-7xl items-center gap-10 rounded-2xl border border-gray-100 bg-white px-5 py-14 shadow-md sm:px-7 md:min-h-[520px] md:grid-cols-2 lg:px-8">
