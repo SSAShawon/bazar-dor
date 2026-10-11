@@ -1,8 +1,11 @@
 "use cache";
+
 import Marquee from "react-fast-marquee";
+import Link from "next/link";
 
 type Product = {
   id: number;
+  slug: string;
   nameBn: string;
   unit: string;
   today: number;
@@ -31,9 +34,10 @@ const PriceMarquee = async () => {
     <div className="border-y border-gray-200 bg-white py-2 text-black">
       <Marquee speed={100} pauseOnHover>
         {data.map((product) => (
-          <div
+          <Link
             key={product.id}
-            className="mx-8 flex items-center gap-3 whitespace-nowrap border-r border-gray-200 pr-8"
+            href={`/product/${product.slug}`}
+            className="mx-8 flex items-center gap-3 whitespace-nowrap border-r border-gray-200 pr-8 transition-opacity hover:opacity-70"
           >
             <span className="text-lg">{product.categoryIcon}</span>
 
@@ -45,15 +49,18 @@ const PriceMarquee = async () => {
 
             <span
               className={
-                product.change.dir === "up"
-                  ? "font-semibold text-red-500"
-                  : "font-semibold text-green-500"
+                product.change.pct === 0
+                  ? "font-semibold text-gray-400"
+                  : product.change.dir === "up"
+                    ? "font-semibold text-red-500"
+                    : "font-semibold text-green-500"
               }
             >
-              {product.change.dir === "up" ? "▲" : "▼"}{" "}
-              {Math.abs(product.change.pct)}%
+              {product.change.pct === 0
+                ? "—"
+                : `${product.change.dir === "up" ? "▲" : "▼"} ${Math.abs(product.change.pct)}%`}
             </span>
-          </div>
+          </Link>
         ))}
       </Marquee>
     </div>
