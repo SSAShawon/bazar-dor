@@ -1,6 +1,6 @@
 # 🛒 বাজার দর | BazarDor
 
-BazarDor is a price tracking web application that helps users explore daily market prices, compare product prices, and monitor price changes in one place.
+BazarDor is a price tracking web application that helps users explore daily market prices, compare product prices and monitor price changes in one place.
 
 ## 🚀 Technologies Used
 
@@ -10,8 +10,6 @@ BazarDor is a price tracking web application that helps users explore daily mark
 - daisyUI
 - Better Auth
 - React
-- Programming Hero BazarDor API
-- Vercel
 
 ## ✨ Key Features
 
@@ -21,12 +19,3 @@ BazarDor is a price tracking web application that helps users explore daily mark
 4. **Product Details** — View individual product information.
 5. **User Authentication & Profile** — Sign in and manage profile information.
 
-## 🌐 Live Demo
-
-[BazarDor](https://bazar-dor-gules.vercel.app)
-
-## 👨‍💻 Developer
-
-**Shawon**
-
-GitHub: [@SSAShawon](https://github.com/SSAShawon)
